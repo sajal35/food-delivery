@@ -15,15 +15,20 @@ class _LoginState extends State<Login> {
   TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  String message = "";
+
   Future<List> loginUser() async {
-    String url = 'http://192.168.254.13:8080/login.php';
+    String url = 'http://foodshareriju.000webhostapp.com/apps/login.php';
     final response = await http.post(url,
         body: {'username': username.text, 'password': password.text});
 
     var datauser = json.decode(response.body);
     if (datauser.length == 1) {
-        Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+    } else {
+      setState(() {
+        message = "invalid username or password";
+      });
     }
   }
 
@@ -79,9 +84,11 @@ class _LoginState extends State<Login> {
                         TextFormField(
                           controller: password,
                           decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Password',
-                              prefixIcon: Icon(Icons.lock)),
+                            border: InputBorder.none,
+                            hintText: 'Password',
+                            prefixIcon: Icon(Icons.lock),
+                          ),
+                          obscureText: true,
                         )
                       ],
                     ),
@@ -92,12 +99,19 @@ class _LoginState extends State<Login> {
                   child: MaterialButton(
                     color: Colors.lightGreen,
                     onPressed: () {
-                      if(_globalKey.currentState.validate()){
+                      if (_globalKey.currentState.validate()) {
                         loginUser();
                       }
                     },
                     child: Text('Login'),
                   ),
+                ),
+                Text(
+                  "$message",
+                  style: TextStyle(color: Colors.red),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 Text(
                   "if you don't have an account please sign up here",

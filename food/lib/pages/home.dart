@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future<List<Donor>> showDonate() async {
-    var url = 'http://192.168.254.13:8080/donate_report.php';
+    var url = 'http://foodshareriju.000webhostapp.com/apps/donate_report.php';
     var response = await http.get(url);
     var jsonData = json.decode(response.body);
     List<Donor> donors = [];
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                                 borderRadius: BorderRadius.circular(10),
                                 image: DecorationImage(
                                     image: NetworkImage(
-                                        'http://192.168.254.13:8080/${myData.image.toString()}'),
+                                        'http://foodshareriju.000webhostapp.com/apps/${myData.image.toString()}'),
                                     fit: BoxFit.cover),
                               ),
                             ),

@@ -21,7 +21,7 @@ class _FoodDescriptionState extends State<FoodDescription> {
                 tag: widget.myData.sn,
                 child: Expanded(
                                 child: Image.network(
-                      'http://192.168.254.13:8080/${widget.myData.image}'),
+                      'http://foodshareriju.000webhostapp.com/apps/${widget.myData.image}'),
                 ),
               ),
               Column(

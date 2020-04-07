@@ -26,7 +26,7 @@ class _DonateState extends State<Donate> {
   String name;
 
   void donateIt(String imageName) {
-    var url = 'http://192.168.254.13:8080/donate.php';
+    var url = 'http://foodshareriju.000webhostapp.com/apps/donate.php';
 
     http.post(url, body: {
       'fullname': _controllerFullname.text,

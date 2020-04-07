@@ -7,10 +7,10 @@ Widget myDrawer(BuildContext context) {
     child: ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountName: Text('Sajal Shrestha'),
-          accountEmail: Text('info@codeit.com.np'),
+          accountName: Text('Riju Bhattarai'),
+          accountEmail: Text('riju.bhattarai@gmail.com.np'),
           currentAccountPicture: CircleAvatar(
-            child: Text('S'),
+            child: Text('R'),
           ),
         ),
 

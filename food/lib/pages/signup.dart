@@ -1,8 +1,9 @@
-import 'dart:convert';
+// import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:food/pages/login.dart';
+// import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:toast/toast.dart';
 
@@ -26,8 +27,8 @@ class _SignUpState extends State<SignUp> {
   String tempFile;
   String name;
 
-  void registerUser(String imageName) {
-    var url = 'http://192.168.254.13:8080/register.php';
+  void registerUser() {
+    var url = 'http://foodshareriju.000webhostapp.com/apps/register.php';
 
     http.post(url, body: {
       'fullname': fullname.text,
@@ -36,18 +37,18 @@ class _SignUpState extends State<SignUp> {
       'contact': contact.text,
       'username': username.text,
       'password': password.text,
-      'image': base64Image,
-      'name': imageName
+      /* 'image': base64Image,
+      'name': imageName */
     });
   }
 
-  chooseImage() {
+  /* chooseImage() {
     setState(() {
       file = ImagePicker.pickImage(source: ImageSource.camera);
     });
-  }
+  } */
 
-  showImage() {
+  /* showImage() {
     return FutureBuilder<File>(
       future: file,
       builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
@@ -70,7 +71,7 @@ class _SignUpState extends State<SignUp> {
         }
       },
     );
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -171,33 +172,34 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text('Choose Image'),
+                /*   Text('Choose Image'),
                   OutlineButton(
                     onPressed: () {
                       chooseImage();
                     },
                     child: Text('Choose Profile Image'),
-                  ),
+                  ), */
                   SizedBox(
                     height: 10,
                   ),
-                  showImage(),
+                  // showImage(),
                   RaisedButton(
                     onPressed: () {
                       if (_globalKey.currentState.validate()) {
-                        setState(() {
+                       /*  setState(() {
                           name = tempFile.split("/").last.toString();
                           //! God single quote at last character in image so need to replace it
                           name = name.substring(0, name.length - 1);
                           print(name);
-                        });
+                        }); */
 
-                        registerUser(name);
+                        registerUser();
                         Toast.show("Thank you for Registration", context,
                             duration: Toast.LENGTH_SHORT,
                             gravity: Toast.CENTER);
                         print('thnk you');
-                        print(name);
+                        print(fullname.text);
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
                       }
                     },
                     child: Text('Register'),
